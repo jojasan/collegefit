@@ -1,2 +1,0 @@
-# collegefit
-CollegeFit first repository
