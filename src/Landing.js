@@ -9,7 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 import iMain from './img/main2.jpg'; // Import using relative path
+import Header from './Header.js'
 
 const styles = theme => ({
   layout: {
@@ -46,7 +48,6 @@ const styles = theme => ({
 });
 
 const sections = [
-  'Find your school',
   'Success Stories',
   'Partners',
   'Join the Team',
@@ -58,55 +59,20 @@ class Landing extends Component {
     const { classes } = this.props;
     return (
       <React.Fragment>
+        {/*
         <div className={classes.layout}>
           This is a test of landing
           The passed prop is: {this.props.value} <br/>
           <button onClick={this.props.onClick}>ClickMe</button>
         </div>
+        */}
         <CssBaseline />
         <div className={classes.layout}>
-          <LandingHeaderStyled/>
-          <LandingContentStyled/>
+          <Header/>
+          <MainContentStyled/>
         </div>
       </React.Fragment>
     );
-  }
-}
-
-class LandingHeader extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <React.Fragment>
-        <CssBaseline />
-        <Toolbar className={classes.toolbarMain}>
-            <Button size="small">Menu</Button>
-            <Typography
-              component="h2"
-              variant="h5"
-              color="inherit"
-              align="center"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              College Fit
-            </Typography>
-            <IconButton>
-              <SearchIcon />
-            </IconButton>
-            <Button variant="outlined" size="small">
-              Sign up
-            </Button>
-        </Toolbar>
-        <Toolbar variant="dense" className={classes.toolbarSecondary}>
-          {sections.map(section => (
-            <Typography color="inherit" noWrap key={section}>
-              {section}
-            </Typography>
-          ))}
-        </Toolbar>
-      </React.Fragment>
-    )
   }
 }
 
@@ -116,6 +82,13 @@ class MainContent extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
+        <Toolbar variant="dense" className={classes.toolbarSecondary}>
+          {sections.map(section => (
+            <Typography color="inherit" noWrap key={section}>
+              {section}
+            </Typography>
+          ))}
+        </Toolbar>
         <main>
           {/* Main featured post */}
           <Paper className={classes.mainFeaturedPost}>
@@ -129,7 +102,10 @@ class MainContent extends Component {
                     It's not as expensive as you think! Learn about many ways you can save
                     and have an estimate or you personalized cost!
                   </Typography>
-                  <Button variant="contained" size="large" color="secondary" className={classes.button}>
+                  <Button variant="contained"
+                    size="large" color="secondary"
+                    className={classes.button}
+                    component={Link} to="/questionaire">
                     JOIN NOW
                   </Button>
                 </div>
@@ -142,6 +118,5 @@ class MainContent extends Component {
   }
 }
 
-const LandingHeaderStyled = withStyles(styles)(LandingHeader);
-const LandingContentStyled = withStyles(styles)(MainContent);
+const MainContentStyled = withStyles(styles)(MainContent);
 export default withStyles(styles)(Landing);

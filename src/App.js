@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'typeface-roboto';
 import Landing from './Landing.js'
+import Questionaire from './Questionaire.js'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -15,10 +16,29 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/questionaire">Questionaire</Link>
+              </li>
+            </ul>
+
+            <hr />
+
+            <Route exact path="/" component={Landing} />
+            <Route path="/questionaire" component={Questionaire} />
+          </div>
+        </Router>
+        {/*
         <Landing
           value={this.state.value}
           onClick={() => this.handleClick()}
         />
+        */}
       </div>
     );
   }
