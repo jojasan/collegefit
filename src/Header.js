@@ -29,6 +29,10 @@ const styles = theme => ({
   toolbarSecondary: {
     justifyContent: 'space-between',
   },
+  root: {
+    width: '100%',
+    maxWidth: 500,
+  },
 });
 
 const sections = [
@@ -48,7 +52,7 @@ class Header extends Component {
             <Button size="small" component={Link} to="/">Home</Button>
             <Typography
               component="h2"
-              variant="h5"
+              variant="h4"
               color="inherit"
               align="center"
               noWrap

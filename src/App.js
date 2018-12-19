@@ -18,6 +18,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
+            <h3>Temp Navigation Menu</h3>
             <ul>
               <li>
                 <Link to="/">Home</Link>
