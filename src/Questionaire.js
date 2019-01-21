@@ -7,11 +7,19 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import SwitchesGroup from './SwitchesGroup.js'
+import SimpleSelect from './SimpleSelect.js'
 
 const styles = theme => ({
   layout: {
@@ -36,11 +44,12 @@ const styles = theme => ({
   },
 });
 
-const steps = ['Personal Information', 'Financial Information', 'Your Preferences'];
+const steps = ['Student Profile', 'Parent Status', 'Household Info', 'Independency Status'];
 
 class Questionaire extends Component {
   state = {
     activeStep: 0,
+    age: 0,
   };
 
   handleNext = () => {
@@ -81,10 +90,10 @@ class Questionaire extends Component {
               ))}
             </Stepper>
             <Typography variant="h6" gutterBottom>
-              Personal Information
+              Student Profile
             </Typography>
             <Grid container spacing={24}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   required
                   id="firstName"
@@ -94,7 +103,7 @@ class Questionaire extends Component {
                   autoComplete="fname"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   required
                   id="lastName"
@@ -104,63 +113,61 @@ class Questionaire extends Component {
                   autoComplete="lname"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={4}>
+                <SimpleSelect/>
+              </Grid>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
-                  id="address1"
-                  name="address1"
-                  label="Address line 1"
+                  id="dob"
+                  name="dob"
+                  label="Date of Birth"
+                  type="date"
+                  defaultValue="2000-01-01"
                   fullWidth
-                  autoComplete="billing address-line1"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={3}>
                 <TextField
-                  id="addiress2"
-                  name="addiress2"
-                  label="Address line 2"
+                  required
+                  id="GPA"
+                  name="GPA"
+                  label="GPA (over 4)"
                   fullWidth
-                  autoComplete="billing address-line2"
+                  type="number"
+                  min="0"
+                  max="4"
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField
+                  required
+                  id="SAT"
+                  name="SAT"
+                  label="SAT Score"
+                  fullWidth
+                  type="number"
+                  min="0"
+                  max="2000"
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField
+                  required
+                  id="ACT"
+                  name="ACT"
+                  label="ACT Score"
+                  fullWidth
+                  type="number"
+                  min="0"
+                  max="2000"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="city"
-                  name="city"
-                  label="City"
-                  fullWidth
-                  autoComplete="billing address-level2"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField id="state" name="state" label="State/Province/Region" fullWidth />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="zip"
-                  name="zip"
-                  label="Zip / Postal code"
-                  fullWidth
-                  autoComplete="billing postal-code"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="country"
-                  name="country"
-                  label="Country"
-                  fullWidth
-                  autoComplete="billing country"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-                  label="Use this address for payment details"
-                />
+                <SwitchesGroup/>
               </Grid>
             </Grid>
 

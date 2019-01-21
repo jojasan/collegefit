@@ -58,7 +58,7 @@ class Header extends Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              College Fit
+              Tuition Fox
             </Typography>
             <IconButton>
               <SearchIcon />
