@@ -17,52 +17,51 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   formControl: {
-    
-    minWidth: 300,
   },
-  selectEmpty: {
+  selectControl: {
     marginTop: theme.spacing.unit * 2,
+    minWidth: 260,
   },
 });
 
 class SimpleSelect extends React.Component {
-  state = {
-    state: '',
-    labelWidth: 0,
-  };
-
-  componentDidMount() {
-    this.setState({
-
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedItem: props.selectedItem,
+      options: props.options,
+      labelText: props.labelText,
+    }
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ selectedItem: event.target });
+    console.log("Dropdown State Updated");
+    console.log(this.state.selectedItem);
   };
 
   render() {
     const { classes } = this.props;
-
+    const { labelText, options, selectedItem } = this.state;
+    console.log("Rendering again with: ");
+    console.log(selectedItem);
     return (
       <form className={classes.root} autoComplete="off">
-        <FormControl required className={classes.formControl}>
-          <InputLabel htmlFor="state">State of Residence</InputLabel>
+        <FormControl required className={classes.formControl} fullWidth>
+          <InputLabel htmlFor="state">{labelText}</InputLabel>
           <Select
-            value={this.state.state}
+            value={selectedItem.value}
             onChange={this.handleChange}
-            name="state"
+            autoWidth
+            name= {labelText.replace(/\s/g, "").concat("Dropdown")}
             inputProps={{
               id: 'state',
             }}
-            className={classes.selectEmpty}
+            className={classes.selectControl}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>California</MenuItem>
-            <MenuItem value={20}>New York</MenuItem>
-            <MenuItem value={30}>Florida</MenuItem>
+            { options.map(item =>
+              <MenuItem key={item.objectID} value={item.value}>{item.label}</MenuItem>
+            )}
           </Select>
         </FormControl>
       </form>

@@ -105,8 +105,8 @@ class MainContent extends Component {
                   <Button variant="contained"
                     size="large" color="secondary"
                     className={classes.button}
-                    component={Link} to="/questionaire">
-                    JOIN NOW
+                    component={Link} to="/questions">
+                    GET STARTED
                   </Button>
                 </div>
               </Grid>

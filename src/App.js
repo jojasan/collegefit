@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import 'typeface-roboto';
 import Landing from './Landing.js'
-import Questionaire from './Questionaire.js'
+import Questions from './Questions.js'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
@@ -24,14 +24,14 @@ class App extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/questionaire">Questionaire</Link>
+                <Link to="/questions">Questions</Link>
               </li>
             </ul>
 
             <hr />
 
             <Route exact path="/" component={Landing} />
-            <Route path="/questionaire" component={Questionaire} />
+            <Route path="/questions" component={Questions} />
           </div>
         </Router>
         {/*
