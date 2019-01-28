@@ -58,7 +58,7 @@ class Header extends Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              TuitionFox
+              TuitionFox FUCK
             </Typography>
             <IconButton>
               <SearchIcon />
