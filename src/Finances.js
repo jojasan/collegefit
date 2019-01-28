@@ -9,6 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const styles = theme => ({
   root: {
@@ -38,12 +39,14 @@ class Finances extends React.Component {
         <Grid container spacing={24}>
           <Grid item xs={12} md={6}>
             <FormControl fullWidth className={classes.margin}>
-              <InputLabel required htmlFor="incomeAmountStudent">Income before taxes (best guess)</InputLabel>
+              <InputLabel required htmlFor="incomeAmountStudent">Income before taxes</InputLabel>
               <Input
                 id="incomeAmountStudent"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
+              <FormHelperText id="helper-text">Estimate you best Guess</FormHelperText>
             </FormControl>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -51,6 +54,7 @@ class Finances extends React.Component {
               <InputLabel required htmlFor="taxesPaidStudent">Taxes paid (best guess)</InputLabel>
               <Input
                 id="taxesPaidStudent"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -61,6 +65,7 @@ class Finances extends React.Component {
               <InputLabel htmlFor="savingsAccount">Money in Checking/Savings account</InputLabel>
               <Input
                 id="savingsAccount"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -71,6 +76,7 @@ class Finances extends React.Component {
               <InputLabel htmlFor="studentInvestments">Net worth of investments</InputLabel>
               <Input
                 id="studentInvestments"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -81,6 +87,7 @@ class Finances extends React.Component {
               <InputLabel htmlFor="studentBusinessFarmWorth">Net worth of business/farm</InputLabel>
               <Input
                 id="studentBusinessFarmWorth"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -97,6 +104,7 @@ class Finances extends React.Component {
               <InputLabel required htmlFor="parent1Income">Parent 1 Income before taxes</InputLabel>
               <Input
                 id="parent1Income"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -107,6 +115,7 @@ class Finances extends React.Component {
               <InputLabel htmlFor="parent2Income">Parent 2 Income before taxes</InputLabel>
               <Input
                 id="parent2Income"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -117,6 +126,7 @@ class Finances extends React.Component {
               <InputLabel required htmlFor="p1p2taxesPaid">Taxes paid by Parent 1 + Parent 2</InputLabel>
               <Input
                 id="p1p2taxesPaid"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -128,6 +138,7 @@ class Finances extends React.Component {
             <InputLabel htmlFor="parentsAccount">Money in Checking/Savings account</InputLabel>
             <Input
               id="parentsAccount"
+              type="number"
               //value={this.state.amount}
               startAdornment={<InputAdornment position="start">$</InputAdornment>}
             />
@@ -138,6 +149,7 @@ class Finances extends React.Component {
               <InputLabel htmlFor="parentInvestments">Net worth of investments</InputLabel>
               <Input
                 id="parentInvestments"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
@@ -148,9 +160,11 @@ class Finances extends React.Component {
               <InputLabel htmlFor="parentBusinessFarmWorth">Net worth of business/farm</InputLabel>
               <Input
                 id="parentBusinessFarmWorth"
+                type="number"
                 //value={this.state.amount}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
+              <FormHelperText id="helper-text">Optional</FormHelperText>
             </FormControl>
           </Grid>
         </Grid>
