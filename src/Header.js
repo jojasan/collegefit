@@ -35,13 +35,6 @@ const styles = theme => ({
   },
 });
 
-const sections = [
-  'Success Stories',
-  'Partners',
-  'Join the Team',
-  'About Us',
-];
-
 class Header extends Component {
   render() {
     const { classes } = this.props;
@@ -58,7 +51,7 @@ class Header extends Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              TuitionFox FUCK
+              TuitionFox
             </Typography>
             <IconButton>
               <SearchIcon />

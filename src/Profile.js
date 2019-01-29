@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import MenuItem from '@material-ui/core/MenuItem';
 import SimpleSelect from './SimpleSelect.js'
 
 const states = [
@@ -54,10 +53,9 @@ const maritalStatus = [
 ];
 
 class Profile extends React.Component {
+
   render() {
-    const { inputs, handleChange } = this.props;
-    console.log("Checkin inputs at Profile")
-    console.log(inputs);
+    const { inputs, changeHandler } = this.props;
     return (
       <React.Fragment>
         <Typography variant="h6" gutterBottom>
@@ -72,6 +70,8 @@ class Profile extends React.Component {
               label="Name"
               fullWidth
               autoComplete="fname"
+              value={inputs.studentName}
+              onChange={changeHandler('studentName')}
             />
           </Grid>
           <Grid item xs={6} sm={6}>
@@ -81,11 +81,12 @@ class Profile extends React.Component {
               name="dobStudent"
               label="Date of Birth"
               type="date"
-              defaultValue="2000-01-01"
               fullWidth
               InputLabelProps={{
                 shrink: true,
               }}
+              value={inputs.studentDoB}
+              onChange={changeHandler('studentDoB')}
             />
           </Grid>
           <Grid item xs={6} sm={6}>
@@ -96,15 +97,16 @@ class Profile extends React.Component {
               label="GPA (over 4)"
               fullWidth
               type="number"
-              min="0"
-              max="4"
+              inputProps= {{ min: 0, max: 4, step: 0.1 }}
+              value={inputs.gpa}
+              onChange={changeHandler('gpa')}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <SimpleSelect
               options={states}
               labelText="State of Residence"
-              selectedItem={inputs.selectedState}
+              selectedItem={inputs.studentState}
             />
           </Grid>
           <Grid item xs={12}>
@@ -156,14 +158,14 @@ class Profile extends React.Component {
             <SimpleSelect
               options={states}
               labelText="Main Parent State of Residence"
-              selectedItem={inputs.selectedState}
+              selectedItem={inputs.parentState}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <SimpleSelect
               options={maritalStatus}
               labelText="Marital Status"
-              selectedItem={inputs.selectedParentMaritalStatus}
+              selectedItem={inputs.maritalStatus}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -186,8 +188,9 @@ class Profile extends React.Component {
               label="# of people in college"
               fullWidth
               type="number"
-              min="0"
-              max="10"
+              inputProps= {{ min: 0, max: 10, step: 1 }}
+              value={inputs.numberInCollege}
+              onChange={changeHandler('numberInCollege')}
             />
           </Grid>
         </Grid>

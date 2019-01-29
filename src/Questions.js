@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Profile from './Profile';
 import Finances from './Finances';
 import AdditionalQs from './AdditionalQs';
+import runEngine from './Engine/Engine';
 
 const styles = theme => ({
   appBar: {
@@ -57,15 +58,19 @@ class Questions extends React.Component {
   state = {
     activeStep: 0,
     inputs: {
-      selectedState: {
+      studentName: '',
+      studentDoB: '2000-01-01',
+      gpa: 3.3,
+      numberInCollege: 1,
+      studentState: {
         name: '',
         value: '',
       },
-      selectedParentState: {
+      parentState: {
         name: '',
         value: '',
       },
-      selectedParentMaritalStatus: {
+      maritalStatus: {
         name: '',
         value: '',
       }
@@ -90,11 +95,18 @@ class Questions extends React.Component {
     });
   };
 
+  handleChange = name => event => {
+    this.state.inputs[name] = event.target.value;
+    this.setState({});
+    console.log('State updated:');
+    console.log(this.state);
+  };
+
   getStepContent(step) {
     switch (step) {
       case 0:
         return <Profile
-            inputs={this.state.inputs}
+            inputs={this.state.inputs} changeHandler={this.handleChange}
           />;
       case 1:
         return <Finances />;
@@ -139,6 +151,7 @@ class Questions extends React.Component {
                   </Typography>
                   <Typography variant="subtitle1">
                     Printing what has been read from the form. (see log)
+                    {runEngine(this.state.inputs)}
                   </Typography>
                 </React.Fragment>
               ) : (
