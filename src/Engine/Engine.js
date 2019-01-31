@@ -37,9 +37,10 @@ const getParentsContribution = (inputs) => {
 };
 
 const getParentsAvailableIncome = (inputs) => {
+  const { p1Income, p2Income, pUntaxedIncome, pTotalAdditionalInfo }
   const totalAllowances = getParentsTotalAllowances(inputs);
-
-  return 0;
+  const totalIncome = p1Income + p2Income + pUntaxedIncome + pTotalAdditionalInfo;
+  return totalIncome - totalAllowances;
 };
 
 const getParentsTotalAllowances = (inputs) => {

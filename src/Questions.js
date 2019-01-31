@@ -62,6 +62,10 @@ class Questions extends React.Component {
       studentDoB: '2000-01-01',
       gpa: 3.3,
       numberInCollege: 1,
+      p1Income: 0,
+      p2Income: 0,
+      pUntaxedIncome: 0,
+      pTotalAdditionalInfo: 0,
       studentState: {
         name: '',
         value: '',

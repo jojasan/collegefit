@@ -329,8 +329,10 @@ const searchTableA7 = (state) => {
 };
 
 const databases = {
+  searchTableA3,
   searchTableA5,
   searchTableA6,
+  searchTableA7,
 };
 
 export default databases;
