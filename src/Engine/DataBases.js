@@ -4,7 +4,7 @@ const tableA1 = [
     percentBelow15k: 0.03,
     percentAbove15k: 0.02,
   },
-  {//ADD the rest here
+  {//ADD the rest here JOSUE
     state: 'state',
     percentBelow15k: 0.0,
     percentAbove15k: 0.0,
