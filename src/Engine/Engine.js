@@ -37,13 +37,21 @@ const getParentsContribution = (inputs) => {
 };
 
 const getParentsAvailableIncome = (inputs) => {
+  const { p1Income, p2Income, pUntaxedIncome, pTotalAdditionalInfo }
   const totalAllowances = getParentsTotalAllowances(inputs);
+  const totalIncome = getParentsTotalIncome(inputs);
+  return totalIncome - totalAllowances;
+};
 
-  return 0;
+const getParentsTotalIncome = (inputs) => {
+  const { p1Income, p2Income, pUntaxedIncome, pTotalAdditionalInfo } = inputs;
+  return p1Income + p2Income + pUntaxedIncome + pTotalAdditionalInfo;
 };
 
 const getParentsTotalAllowances = (inputs) => {
-
+  const { maritalStatus, incomeTaxPaidP1P2, parentState, numberInCollege, numberInHousehold, p1Income, p2Income } = inputs;
+  const totalIncome = getParentsTotalIncome(inputs);
+  
   return 0;
 };
 
