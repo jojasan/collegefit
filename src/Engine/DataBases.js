@@ -837,6 +837,39 @@ const tableA7 = [
   },
 ];
 
+const incomeceiling = [
+  {
+    familysize: 2,
+    calgrantA: 92100,
+    calgrantB: 43000,
+    calgrantC: 92100,
+  },
+  {
+    familysize: 3,
+    calgrantA: 94400,
+    calgrantB: 48500,
+    calgrantC: 94400,
+  },
+  {
+    familysize: 4,
+    calgrantA: 102500,
+    calgrantB: 53900,
+    calgrantC: 102500,
+  },
+  {
+    familysize: 5,
+    calgrantA: 109900,
+    calgrantB: 60300,
+    calgrantC: 109900,
+  },
+  {
+    familysize: 6,
+    calgrantA: 118500,
+    calgrantB: 65100,
+    calgrantC: 118500,
+  },  
+];
+
 <<<<<<< HEAD
 const searchTableA1 = (state, totalIncome) => {
   for (var i = 0; i < tableA1.length; i++) {
