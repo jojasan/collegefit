@@ -255,6 +255,23 @@ const tableA1 = [
 
 ];
 
+const tableA2 = [
+  {
+    range_low: 0,
+    range_high: 127200,
+    fixedContribution: 0,
+    percAAIOverX: 0.0765,
+    x: 0
+  },
+  {
+    range_low: 127201,
+    range_high: 9999999999,
+    fixedContribution:  9730.80,
+    percAAIOverX: 0.0145,
+    x:  127200
+  },
+];
+
 const tableA3 = [ //row is # in household, column is # in college
   [ //first row doesnt'exist: number in household can't be less than 2
     0,0,0,0,0,0,0,0,0,0,0,0,0,0 //15 zeroes for first row
