@@ -4,11 +4,255 @@ const tableA1 = [
     percentBelow15k: 0.03,
     percentAbove15k: 0.02,
   },
-  {//ADD the rest here
-    state: 'state',
-    percentBelow15k: 0.0,
-    percentAbove15k: 0.0,
-  },
+  {
+    state: 'Alaska',
+    percentBelow15k: 0.02,
+    percentAbove15k: 0.01,},
+  {
+    state: 'American Samoa',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Arizona',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'Arkansas',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'California',
+    percentBelow15k: 0.08,
+    percentAbove15k: 0.07,},
+  {
+    state: 'Canada and Canadian Provinces',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Colorado',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'Connecticut',
+    percentBelow15k: 0.09,
+    percentAbove15k: 0.08,},
+  {
+    state: 'Delaware',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'District of Columbia',
+    percentBelow15k: 0.07,
+    percentAbove15k: 0.06,},
+  {
+    state: 'Federated States of Micronesia',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Florida',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Georgia',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Guam',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Hawaii',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Idaho',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Illinois',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Indiana',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'Iowa',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Kansas',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'Kentucky',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Louisiana',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Maine',
+    percentBelow15k: 0.06,
+    percentAbove15k: 0.05,},
+  {
+    state: 'Marshall Islands',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Maryland',
+    percentBelow15k: 0.08,
+    percentAbove15k: 0.07,},
+  {
+    state: 'Massachusetts',
+    percentBelow15k: 0.07,
+    percentAbove15k: 0.06,},
+  {
+    state: 'Mexico',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Michigan',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'Minnesota',
+    percentBelow15k: 0.06,
+    percentAbove15k: 0.05,},
+  {
+    state: 'Mississippi',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Missouri',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'Montana',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Nebraska',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Nevada',
+    percentBelow15k: 0.02,
+    percentAbove15k: 0.01,},
+  {
+    state: 'New Hampshire',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'New Jersey',
+    percentBelow15k: 0.09,
+    percentAbove15k: 0.08,},
+  {
+    state: 'New Mexico',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'New York',
+    percentBelow15k: 0.09,
+    percentAbove15k: 0.08,},
+  {
+    state: 'North Carolina',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'North Dakota',
+    percentBelow15k: 0.02,
+    percentAbove15k: 0.01,},
+  {
+    state: 'Northern Mariana Islands',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Ohio',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Oklahoma',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Oregon',
+    percentBelow15k: 0.07,
+    percentAbove15k: 0.06,},
+  {
+    state: 'Palau',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Pennsylvania',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Puerto Rico',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Rhode Island',
+    percentBelow15k: 0.06,
+    percentAbove15k: 0.05,},
+  {
+    state: 'South Carolina',
+    percentBelow15k: 0.04,
+    percentAbove15k: 0.03,},
+  {
+    state: 'South Dakota',
+    percentBelow15k: 0.02,
+    percentAbove15k: 0.01,},
+  {
+    state: 'Tennessee',
+    percentBelow15k: 0.02,
+    percentAbove15k: 0.01,},
+  {
+    state: 'Texas',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Utah',
+    percentBelow15k: 0.05,
+    percentAbove15k: 0.04,},
+  {
+    state: 'Vermont',
+    percentBelow15k: 0.06,
+    percentAbove15k: 0.05,},
+  {
+    state: 'Virgin Islands',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Virginia',
+    percentBelow15k: 0.06,
+    percentAbove15k: 0.05,},
+  {
+    state: 'Washington',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'West Virginia',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Wisconsin',
+    percentBelow15k: 0.06,
+    percentAbove15k: 0.05,},
+  {
+    state: 'Wyoming',
+    percentBelow15k: 0.02,
+    percentAbove15k: 0.01,},
+  {
+    state: 'Blank or Invalid State',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+  {
+    state: 'Other',
+    percentBelow15k: 0.03,
+    percentAbove15k: 0.02,},
+
 ];
 
 const tableA3 = [ //row is # in household, column is # in college
