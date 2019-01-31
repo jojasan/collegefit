@@ -291,12 +291,33 @@ const tableA6 = [
     percAAIOverX: 0.25,
     x: 16600
   },
-  { //ADD the rest here
-    range_low: 0,
-    range_high: 0,
-    fixedContribution: 0,
-    percAAIOverX: 0,
-    x: 0
+  {
+    range_low: 20801,
+    range_high: 25100,
+    fixedContribution: 4702,
+    percAAIOverX: .29,
+    x: 20800
+  },
+  {
+    range_low: 25101,
+    range_high: 29300,
+    fixedContribution: 5949,
+    percAAIOverX: .34,
+    x: 25100
+  },
+  {
+    range_low: 29301,
+    range_high: 23600,
+    fixedContribution: 7377,
+    percAAIOverX: .40,
+    x: 29300
+  },
+  {
+    range_low: 33601,
+    range_high: 9999999999,
+    fixedContribution: 9097,
+    percAAIOverX: .47,
+    x: 33600
   },
 ];
 
