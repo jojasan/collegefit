@@ -320,3 +320,14 @@ const schoolinfo = [
     type: 'Private Non-Profit',
   },
 ];
+
+const salaryinfo = [
+  {
+    id:1,
+    major:
+    [
+      {
+        name: '',
+        salary: 0,
+      },
+    ],
