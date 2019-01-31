@@ -23,6 +23,7 @@ const getFederalAid = (inputs) => {
 const getEFC = (inputs) => {
   //TODO: assigned to XXX
   console.log('Calculating EFC');
+  getParentsContribution(inputs);
   return 0;
 };
 
