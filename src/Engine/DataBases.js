@@ -586,6 +586,10 @@ const searchTableA1 = (state, totalIncome) => {
   return 0;
 };
 
+const searchTableA2 = (pIncome) => {
+  return 0;
+};
+
 const searchTableA3 = (numberInHousehold, numberInCollege) => {
   return tableA3[numberInHousehold][numberInCollege];
 };
@@ -623,6 +627,7 @@ const searchTableA7 = (state) => {
 };
 
 const databases = {
+  searchTableA1,
   searchTableA3,
   searchTableA5,
   searchTableA6,

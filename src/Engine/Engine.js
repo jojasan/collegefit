@@ -51,7 +51,15 @@ const getParentsTotalIncome = (inputs) => {
 const getParentsTotalAllowances = (inputs) => {
   const { maritalStatus, incomeTaxPaidP1P2, parentState, numberInCollege, numberInHousehold, p1Income, p2Income } = inputs;
   const totalIncome = getParentsTotalIncome(inputs);
-  
+  const stateTaxAllowance = databases.searchTableA1(parentState, totalIncome);
+  const ssTaxP1 = databases.searchTableA2(p1Income);
+  const ssTaxP2 = databases.searchTableA2(p2Income);
+  const incomeProtectionAllowance = databases.searchTableA3(numberInHousehold, numberInCollege);
+  const pEmploymentExpenseAllowance = getParentEmploymentExpenseAllowance(inputs);
+  return stateTaxAllowance + ssTaxP1 + ssTaxP2 + incomeProtectionAllowance + pEmploymentExpenseAllowance;
+};
+
+const getParentEmploymentExpenseAllowance = (inputs) => {
   return 0;
 };
 
