@@ -29,11 +29,6 @@ const getEFC = (inputs) => {
 
 const getParentsContribution = (inputs) => {
   const { numberInCollege } = inputs;
-  //TO ADD MORE INPUTS THAT YOU NEED JUST DO THE FOLLOWING
-  //const { numberInCollege, otherVariableName1, otherVariableName2, ... } = inputs;
-  //the official names of the variables can be found at the Questions.js file (search 'inputs: {')
-  //if you need a constant, search for the names on the Constants.js file
-  //if you need to search in a database (tables) use databases.searchTableName(param1,param2)
   const availableIncome = getParentsAvailableIncome(inputs);
   const contributionAssets = getParentsContributionAssets(inputs);
   const aai = availableIncome + contributionAssets;
@@ -42,6 +37,7 @@ const getParentsContribution = (inputs) => {
 };
 
 const getParentsAvailableIncome = (inputs) => {
+  const totalAllowances = getParentsTotalAllowances(inputs);
 
   return 0;
 };
