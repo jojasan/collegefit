@@ -286,9 +286,253 @@ const tableA7 = [
     state: 'alabama',
     percent: 0.02
   },
-  {//ADD the rest here
-    state: 'name',
+  {
+    state: 'alaska',
     percent: 0.0
+  },
+  {
+    state: 'american samoa',
+    percent: 0.02
+  },
+  {
+    state: 'arizona',
+    percent: 0.02
+  },
+  {
+    state: 'arkansas',
+    percent: 0.03
+  },
+  {
+    state: 'california',
+    percent: 0.06
+  },
+  {
+    state: 'canada and canadian provinces',
+    percent: 0.02
+  },
+  {
+    state: 'colorado',
+    percent: 0.03
+  },
+  {
+    state: 'connecticut',
+    percent: 0.05
+  },
+  {
+    state: 'delaware',
+    percent: 0.03
+  },
+  {
+    state: 'district of columbia',
+    percent: 0.06
+  },
+  {
+    state: 'federated states of micronesia',
+    percent: 0.02
+  },
+  {
+    state: 'florida',
+    percent: 0.01
+  },
+  {
+    state: 'georgia',
+    percent: 0.03
+  },
+  {
+    state: 'guam',
+    percent: 0.02
+  },
+  {
+    state: 'hawaii',
+    percent: 0.04
+  },
+  {
+    state: 'idaho',
+    percent: 0.03
+  },
+  {
+    state: 'illinois',
+    percent: 0.03
+  },
+  {
+    state: 'indiana',
+    percent: 0.03
+  },
+  {
+    state: 'iowa',
+    percent: 0.03
+  },
+  {
+    state: 'kansas',
+    percent: 0.02
+  },
+  {
+    state: 'kentucky',
+    percent: 0.04
+  },
+  {
+    state: 'louisiana',
+    percent: 0.02
+  },
+  {
+    state: 'maine',
+    percent: 0.03
+  },
+  {
+    state: 'marshall islands',
+    percent: 0.02
+  },
+  {
+    state: 'maryland',
+    percent: 0.06
+  },
+  {
+    state: 'massachusetts',
+    percent: 0.04
+  },
+  {
+    state: 'mexico',
+    percent: 0.02
+  },
+  {
+    state: 'michigan',
+    percent: 0.03
+  },
+  {
+    state: 'minnesota',
+    percent: 0.05
+  },
+  {
+    state: 'mississippi',
+    percent: 0.02
+  },
+  {
+    state: 'missouri',
+    percent: 0.03
+  },
+  {
+    state: 'montana',
+    percent: 0.03
+  },
+  {
+    state: 'nebraska',
+    percent: 0.03
+  },
+  {
+    state: 'nevada',
+    percent: 0.01
+  },
+  {
+    state: 'new hampshire',
+    percent: 0.01
+  },
+  {
+    state: 'new jersey',
+    percent: 0.05
+  },
+  {
+    state: 'new mexico',
+    percent: 0.02
+  },
+  {
+    state: 'new york',
+    percent: 0.07
+  },
+  {
+    state: 'north carolina',
+    percent: 0.03
+  },
+  {
+    state: 'north dakota',
+    percent: 0.01
+  },
+  {
+    state: 'northern mariana islands',
+    percent: 0.02
+  },
+  {
+    state: 'ohio',
+    percent: 0.03
+  },
+  {
+    state: 'oklahoma',
+    percent: 0.02
+  },
+  {
+    state: 'oregon',
+    percent: 0.05
+  },
+  {
+    state: 'palau',
+    percent: 0.02
+  },
+  {
+    state: 'pennsylvania',
+    percent: 0.03
+  },
+  {
+    state: 'puerto rico',
+    percent: 0.02
+  },
+  {
+    state: 'rhode island',
+    percent: 0.04
+  },
+  {
+    state: 'south carolina',
+    percent: 0.03
+  },
+  {
+    state: 'south dakota',
+    percent: 0.01
+  },
+  {
+    state: 'tennessee',
+    percent: 0.01
+  },
+  {
+    state: 'texas',
+    percent: 0.01
+  },
+  {
+    state: 'utah',
+    percent: 0.03
+  },
+  {
+    state: 'vermont',
+    percent: 0.03
+  },
+  {
+    state: 'virgin islands',
+    percent: 0.02
+  },
+  {
+    state: 'virginia',
+    percent: 0.04
+  },
+  {
+    state: 'washington',
+    percent: 0.01
+  },
+  {
+    state: 'west virginia',
+    percent: 0.03
+  },
+  {
+    state: 'wisconsin',
+    percent: 0.04
+  },
+  {
+    state: 'wyoming',
+    percent: 0.01
+  },
+  {
+    state: 'blank or invalid state',
+    percent: 0.02
+  },
+  {
+    state: 'other',
+    percent: 0.02
   },
 ];
 
