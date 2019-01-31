@@ -11,10 +11,14 @@ const tableA1 = [
   },
 ];
 
-const tableA3 = [
-  [
-// josue
+const tableA3 = [ //row is # in household, column is # in college
+  [ //first row doesnt'exist: number in household can't be less than 2
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0 //15 zeroes for first row
   ],
+  [
+    18580,15400,0,0,0,0,0,0,0,0,0,0,0,0 //in total there should be 14 elements
+  ],
+  //do the rest
 ];
 
 const tableA5 = [
@@ -277,6 +281,21 @@ const tableA6 = [
   },
 ];
 
+const tableA7 = [
+  {
+    state: 'alabama',
+    percent: 0.02
+  },
+  {//ADD the rest here
+    state: 'name',
+    percent: 0.0
+  },
+];
+
+const searchTableA3 = (numberInHousehold, numberInCollege) => {
+  return tableA3[numberInHousehold][numberInCollege];
+};
+
 const searchTableA5 = (age, numberOfParents) => {
   if(age <= 25) {
     return (numberOfParents == 1) ? tableA5[0].allowanceIf1Parent : tableA5[0].allowanceIf2Parent;
@@ -295,6 +314,15 @@ const searchTableA6 = (aai) => {
     let { range_low, range_high, fixedContribution, percAAIOverX, x } = tableA6[i];
     if(aai >= range_low && aai <= range_high) {
       return fixedContribution + (aai - x) * percAAIOverX;
+    }
+  }
+  return 0;
+};
+
+const searchTableA7 = (state) => {
+  for (var i = 0; i < tableA7.length; i++) {
+    if(tableA7[i].state.toLocaleLowerCase().localeCompare(state.toLocaleLowerCase()) == 0) {
+      return tableA7[i].percent;
     }
   }
   return 0;
