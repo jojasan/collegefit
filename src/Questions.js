@@ -63,6 +63,7 @@ class Questions extends React.Component {
       gpa: 3.3,
       numberInCollege: 1,
       numberInHousehold: 2,
+      numberOfParents: 1, //TODO: needs to be read from the form! Maybe checkbox?
       p1Income: 0,
       p2Income: 0,
       pUntaxedIncome: 0,

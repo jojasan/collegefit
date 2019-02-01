@@ -593,7 +593,6 @@ const tableA7 = [
   },
 ];
 
-<<<<<<< HEAD
 const searchTableA1 = (state, totalIncome) => {
   for (var i = 0; i < tableA1.length; i++) {
     const { state, percentBelow15k, percentAbove15k } = tableA1[i];
@@ -608,8 +607,6 @@ const searchTableA2 = (pIncome) => {
   return 0;
 };
 
-=======
->>>>>>> 9eca30499af128e0273afc1b0fed10a3a6786f56
 const searchTableA3 = (numberInHousehold, numberInCollege) => {
   return tableA3[numberInHousehold][numberInCollege];
 };
@@ -647,11 +644,8 @@ const searchTableA7 = (state) => {
 };
 
 const databases = {
-<<<<<<< HEAD
   searchTableA1,
   searchTableA3,
-=======
->>>>>>> 9eca30499af128e0273afc1b0fed10a3a6786f56
   searchTableA5,
   searchTableA6,
 };

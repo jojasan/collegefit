@@ -37,7 +37,7 @@ const getParentsContribution = (inputs) => {
 };
 
 const getParentsAvailableIncome = (inputs) => {
-  const { p1Income, p2Income, pUntaxedIncome, pTotalAdditionalInfo }
+  const { p1Income, p2Income, pUntaxedIncome, pTotalAdditionalInfo } = inputs;
   const totalAllowances = getParentsTotalAllowances(inputs);
   const totalIncome = getParentsTotalIncome(inputs);
   return totalIncome - totalAllowances;
@@ -59,8 +59,25 @@ const getParentsTotalAllowances = (inputs) => {
   return stateTaxAllowance + ssTaxP1 + ssTaxP2 + incomeProtectionAllowance + pEmploymentExpenseAllowance;
 };
 
-const getParentEmploymentExpenseAllowance = (inputs) => {
-  return 0;
+const getParentEmploymentExpenseAllowance = (inputs) => { //TODO this might need a review! logic is complicated
+  const { numberOfParents, maritalStatus, p1Income, p2Income } = inputs;
+  const percIncomeP1 = p1Income * 0.35;
+  const percIncomeP2 = p2Income * 0.35;
+  if(numberOfParents == 2 && (
+    maritalStatus.value.toLocaleLowerCase().localeCompare('Married') == 0 ||
+    maritalStatus.value.toLocaleLowerCase().localeCompare('Living Together') == 0 )) {
+    if(p2Income == 0) return 0; //case when only one working parent
+    if(percIncomeP1 < percIncomeP2) {
+      return (percIncomeP1 < 4000) ? percIncomeP1 : 4000;
+    }
+    else return (percIncomeP2 < 4000) ? percIncomeP2 : 4000;
+  }
+  else if(numberOfParents == 1) {
+    return (percIncomeP1 < 4000) ? percIncomeP1 * 0.35 : 4000;
+  }
+  else {
+    return 0;
+  }
 };
 
 const getParentsContributionAssets = (inputs) => {
