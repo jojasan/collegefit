@@ -867,8 +867,92 @@ const incomeceiling = [
     calgrantA: 118500,
     calgrantB: 65100,
     calgrantC: 118500,
-  },  
+  },
 ];
+
+const stateaid = [
+  {
+    aidtype: 'calgrantA',
+    schooltype: 'CSU',
+    y1: 92100,
+    y2: 92100,
+    y3: 92100,
+    y4: 92100,
+  },
+  {
+    aidtype: 'calgrantA',
+    schooltype: 'UC',
+    y1: 94400,
+    y2: 94400,
+    y3: 94400,
+    y4: 94400,
+  },
+  {
+    aidtype: 'calgrantA',
+    schooltype: 'For-Profit (Non-WASC)',
+    y1: 102500,
+    y2: 102500,
+    y3: 102500,
+    y4: 102500,
+  },
+  {
+    aidtype: 'calgrantA',
+    schooltype: 'For-Profit (WASC)',
+    y1: 109900,
+    y2: 109900,
+    y3: 109900,
+    y4: 109900,
+  },
+  {
+    aidtype: 'calgrantA',
+    schooltype: 'Private Non-Profit',
+    y1: 118500,
+    y2: 118500,
+    y3: 118500,
+    y4: 118500,
+  },
+  {
+    aidtype: 'calgrantB',
+    schooltype: 'CSU',
+    y1: 1672,
+    y2: 92100,
+    y3: 92100,
+    y4: 92100,
+  },
+  {
+    aidtype: 'calgrantB',
+    schooltype: 'UC',
+    y1: 1672,
+    y2: 94400,
+    y3: 94400,
+    y4: 94400,
+  },
+  {
+    aidtype: 'calgrantB',
+    schooltype: 'For-Profit (Non-WASC)',
+    y1: 1672,
+    y2: 102500,
+    y3: 102500,
+    y4: 102500,
+  },
+  {
+    aidtype: 'calgrantB',
+    schooltype: 'For-Profit (WASC)',
+    y1: 1672,
+    y2: 109900,
+    y3: 109900,
+    y4: 109900,
+  },
+  {
+    aidtype: 'calgrantB',
+    schooltype: 'Private Non-Profit',
+    y1: 1672,
+    y2: 118500,
+    y3: 118500,
+    y4: 118500,
+  },
+];
+
 
 <<<<<<< HEAD
 const searchTableA1 = (state, totalIncome) => {
