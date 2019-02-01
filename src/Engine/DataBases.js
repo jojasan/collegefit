@@ -322,6 +322,44 @@ const tableA3 = [ //row is # in household, column is # in college
 
 ];
 
+const tableA4 = [
+  {
+    range_low: 0,
+    range_high: 1,
+    fixedContribution: 0,
+    percAAIOverX: 0.0,
+    x: 0
+  },
+  {
+    range_low: 1,
+    range_high: 13000,
+    fixedContribution: 0,
+    percAAIOverX: 0.4,
+    x: 0
+  },
+  {
+    range_low: 130001,
+    range_high: 395000,
+    fixedContribution: 52000,
+    percAAIOverX: 0.5,
+    x: 130000
+  },
+  {
+    range_low: 395001,
+    range_high: 660000,
+    fixedContribution: 184500,
+    percAAIOverX: 0.6,
+    x: 395000
+  },
+  {
+    range_low: 660001,
+    range_high: 9999999999,
+    fixedContribution: 343500,
+    percAAIOverX: 1.0,
+    x: 660000
+  },
+];
+
 const tableA5 = [
   {
     ageOfOlderParent: 25,
