@@ -1004,11 +1004,27 @@ const searchTableA1 = (state, totalIncome) => {
 };
 
 const searchTableA2 = (pIncome) => {
+  for (var i = 0; i < tableA2.length; i++) {
+    let { range_low, range_high, fixedContribution, percAAIOverX, x } = tableA2[i];
+    if(pIncome >= range_low && pIncome <= range_high) {
+      return fixedContribution + (pIncome - x) * percAAIOverX;
+    }
+  }
   return 0;
 };
 
 const searchTableA3 = (numberInHousehold, numberInCollege) => {
   return tableA3[numberInHousehold][numberInCollege];
+};
+
+const searchTableA4 = (worthBiz) => {
+  for (var i = 0; i < tableA4.length; i++) {
+    let { range_low, range_high, fixedContribution, percAAIOverX, x } = tableA4[i];
+    if(worthBiz >= range_low && worthBiz <= range_high) {
+      return fixedContribution + (worthBiz - x) * percAAIOverX;
+    }
+  }
+  return 0;
 };
 
 const searchTableA5 = (age, numberOfParents) => {
@@ -1045,9 +1061,12 @@ const searchTableA7 = (state) => {
 
 const databases = {
   searchTableA1,
+  searchTableA2,
   searchTableA3,
+  searchTableA4,
   searchTableA5,
   searchTableA6,
+  searchTableA7,
 };
 
 export default databases;

@@ -17,14 +17,25 @@ const getFederalAid = (inputs) => {
   //TODO: assigned to XXX
   console.log('Calculating Federal Aid');
   const efc = getEFC(inputs);
+  console.log('EFC is: ' + efc);
+
   return 0;
 };
 
 const getEFC = (inputs) => {
   //TODO: assigned to XXX
   console.log('Calculating EFC');
-  getParentsContribution(inputs);
-  return 0;
+  const parentsContribution = getParentsContribution(inputs);
+  const studentContributionAAI = getStudentContributionAAIncome(inputs);
+  const studentContributionAssets = getStudentContributionAssets(inputs);
+  console.log('Parents Contribution is: ' + parentsContribution);
+  console.log('Student Contribution AAI is: ' + studentContributionAAI);
+  console.log('Student Contribution Assets is: ' + studentContributionAssets);
+  return parentsContribution + studentContributionAAI + studentContributionAssets;
+};
+
+const getGrants = (inputs) => {
+
 };
 
 const getParentsContribution = (inputs) => {
@@ -81,18 +92,38 @@ const getParentEmploymentExpenseAllowance = (inputs) => { //TODO this might need
 };
 
 const getParentsContributionAssets = (inputs) => {
-
-  return 0;
+  const { pCashSavingsCheckings, pWorthInvestments, pWorthBiz, numberOfParents, parent1DoB, parent2DoB } = inputs;
+  const pBizWorthAdjusted = databases.searchTableA4(pWorthBiz);
+  const pEdSavingsAssetProt = databases.searchTableA5(getEldestParentAge(parent1DoB, parent2DoB), numberOfParents);
+  const result = (pCashSavingsCheckings + pWorthInvestments + pBizWorthAdjusted - pEdSavingsAssetProt) * 0.12;
+  return result > 0 ? result : 0;
 };
 
 const getStudentContributionAAIncome = (inputs) => {
+  const studentIncome = getStudentTotalIncome(inputs);
+  const studentAllowances = getStudentAllowances(inputs);
+  const result = studentIncome - studentAllowances;
+  return result < 0 ? 0 : result;
+};
 
-  return 0;
+const getStudentTotalIncome = (inputs) => {
+  const { studentIncome, studentUntaxedIncome, studentTotalAdditionalInfo } = inputs;
+  return studentIncome + studentUntaxedIncome + studentTotalAdditionalInfo;
+};
+
+const getStudentAllowances = (inputs) => {
+  const { studentIncomeTaxPaid, studentState, studentIncome, studentIncProtAllowance } = inputs;
+  const sStateTaxAllowance = databases.searchTableA7(studentState.name);
+  const sSocialSecurityTax = databases.searchTableA2(studentIncome);
+  //TODO: verify with Oscar
+  const parentsAllowances = getParentsContribution(inputs);
+  const adjustedPAllowances = parentsAllowances < 0 ? -parentsAllowances : 0;
+  return sStateTaxAllowance + sSocialSecurityTax + studentIncomeTaxPaid + studentIncProtAllowance + adjustedPAllowances;
 };
 
 const getStudentContributionAssets = (inputs) => {
-
-  return 0;
+  const { studentCashSavingsCheckings, studentWorthInvestments, studentWorthBiz } = inputs;
+  return (studentCashSavingsCheckings + studentWorthInvestments + studentWorthBiz) * 0.2;
 };
 
 //-------------------- STATE AID SECTION ----------------------
@@ -114,7 +145,18 @@ const addAssumptions = (inputs) => {
   //TODO: assigned to John
   console.log('Adding constants and assumptions to given inputs');
   const fullInputs = inputs;
+  fullInputs['studentIncProtAllowance'] = 6600;
   return fullInputs;
+};
+
+const getEldestParentAge = (date1, date2) => {
+  //TODO!
+  return getAgeFromDate(date1);
+};
+
+const getAgeFromDate = (date) => {
+  //TODO!
+  return 27;
 };
 
 export default runEngine;
