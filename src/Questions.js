@@ -77,7 +77,7 @@ class Questions extends React.Component {
       parent2DoB: '1980-01-01',
       gpa: 3.3,
       numberInCollege: 1,
-      numberInHousehold: 2,
+      numberInHousehold: 3,
       numberOfParents: 1, //TODO: needs to be read from the form! Maybe checkbox?
       parentPassedAwayMilitary: false,
       careerInTeaching: false,
@@ -99,18 +99,9 @@ class Questions extends React.Component {
       livingPreferences: 'onCampus',
       school: 1, //ID for UCLA, the defaul school
       isDependant: true,
-      studentState: {
-        name: 'California',
-        value: 'CA',
-      },
-      parentState: {
-        name: 'California',
-        value: 'CA',
-      },
-      maritalStatus: {
-        name: 'Married',
-        value: 'Married',
-      },
+      studentState: 'California',
+      parentState: 'California',
+      maritalStatus: 'Married',
       results : {
         federalAid: 0,
         stateAid: 0,
@@ -118,18 +109,9 @@ class Questions extends React.Component {
         totalCOA: 0,
         efc: 0,
       },
-      schoolCompare1: {
-        name: 'UCLA',
-        value: 'UCLA',
-      },
-      schoolCompare2: {
-        name: 'UC Berkeley',
-        value: 'UC Berkeley',
-      },
-      schoolCompare3: {
-        name: 'Northwestern University',
-        value: 'Northwestern University',
-      },
+      schoolCompare1: 'UCLA',
+      schoolCompare2: 'UC Berkeley',
+      schoolCompare3: 'Northwestern University',
     }
   };
 
@@ -221,8 +203,7 @@ class Questions extends React.Component {
                   </Typography>
                   <Typography variant="subtitle1">
                     Compare Schools
-                  </Typography>
-
+                  </Typography><br/>
                   <Paper className={classes.root}>
                     <Table className={classes.table}>
                       <TableHead>
@@ -232,16 +213,19 @@ class Questions extends React.Component {
                             options={schoolOptions}
                             labelText="School 1"
                             selectedItem={this.state.inputs.schoolCompare1}
+                            changeHandler={this.handleChange('schoolCompare1')}
                           /></TableCell>
                           <TableCell><SimpleSelect
                             options={schoolOptions}
                             labelText="School 2"
                             selectedItem={this.state.inputs.schoolCompare2}
+                            changeHandler={this.handleChange('schoolCompare2')}
                           /></TableCell>
                           <TableCell><SimpleSelect
                             options={schoolOptions}
                             labelText="School 3"
                             selectedItem={this.state.inputs.schoolCompare3}
+                            changeHandler={this.handleChange('schoolCompare3')}
                           /></TableCell>
                         </TableRow>
                       </TableHead>
@@ -270,13 +254,13 @@ class Questions extends React.Component {
                           <TableCell align="right">{'XXXX'}</TableCell>
                           <TableCell align="right">{'XXXX'}</TableCell>
                         </TableRow>
-                        <TableRow key={4}>
+                        <TableRow key={5}>
                           <TableCell component="th" scope="row">EFC</TableCell>
                           <TableCell align="right">{this.state.results.efc}</TableCell>
                           <TableCell align="right">{'XXXX'}</TableCell>
                           <TableCell align="right">{'XXXX'}</TableCell>
                         </TableRow>
-                        <TableRow key={4}>
+                        <TableRow key={6}>
                           <TableCell component="th" scope="row">ROI</TableCell>
                           <TableCell align="right">{this.state.results.roi}</TableCell>
                           <TableCell align="right">{'XXXX'}</TableCell>
@@ -285,10 +269,10 @@ class Questions extends React.Component {
                       </TableBody>
                     </Table>
                   </Paper>
-                  <br/>
+                  <br/><br/>
                   <Typography variant="subtitle1">
                     List of Schools
-                  </Typography>
+                  </Typography><br/>
                     <Paper className={classes.root}>
                       <Table className={classes.table}>
                         <TableHead>

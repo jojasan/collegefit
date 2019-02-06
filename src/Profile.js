@@ -5,52 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import SimpleSelect from './SimpleSelect.js'
+import constants from './Engine/Constants'
 
-const states = [
-  {
-    value: 'CA',
-    label: 'California',
-    objectID: 1,
-  },
-  {
-    value: 'NY',
-    label: 'New York',
-    objectID: 2,
-  },
-  {
-    value: 'FL',
-    label: 'Florida',
-    objectID: 3,
-  },
-  {
-    value: 'TX',
-    label: 'Texas',
-    objectID: 4,
-  },
-  {
-    value: 'MS',
-    label: 'Massachussets',
-    objectID: 5,
-  },
-];
-
-const maritalStatus = [
-  {
-    value: 'Single',
-    label: 'Single',
-    objectID: 1
-  },
-  {
-    value: 'Married',
-    label: 'Married',
-    objectID: 2
-  },
-  {
-    value: 'Divorced',
-    label: 'Divorced',
-    objectID: 3
-  },
-];
+const states = constants.states;
+const maritalStatus = constants.maritalStatus;
 
 class Profile extends React.Component {
 
@@ -107,6 +65,7 @@ class Profile extends React.Component {
               options={states}
               labelText="State of Residence"
               selectedItem={inputs.studentState}
+              changeHandler={changeHandler('studentState')}
             />
           </Grid>
         </Grid>
@@ -149,6 +108,7 @@ class Profile extends React.Component {
               options={states}
               labelText="Main Parent State of Residence"
               selectedItem={inputs.parentState}
+              changeHandler={changeHandler('parentState')}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -156,6 +116,7 @@ class Profile extends React.Component {
               options={maritalStatus}
               labelText="Marital Status"
               selectedItem={inputs.maritalStatus}
+              changeHandler={changeHandler('maritalStatus')}
             />
           </Grid>
           <Grid item xs={12} sm={6}>

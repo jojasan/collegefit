@@ -52,7 +52,6 @@ const getFederalAid = (inputs) => {
 };
 
 const getEFC = (inputs, showLogs) => {
-  console.log('Calculating EFC');
   const parentsContribution = getParentsContribution(inputs);
   const studentContributionAAI = getStudentContributionAAIncome(inputs);
   const studentContributionAssets = getStudentContributionAssets(inputs);
@@ -102,12 +101,12 @@ const getParentsTotalIncome = (inputs) => {
 const getParentsTotalAllowances = (inputs) => {
   const { maritalStatus, incomeTaxPaidP1P2, parentState, numberInCollege, numberInHousehold, p1Income, p2Income } = inputs;
   const totalIncome = getParentsTotalIncome(inputs);
-  const stateTaxAllowance = databases.searchTableA1(parentState, totalIncome);
-  const ssTaxP1 = databases.searchTableA2(p1Income);
-  const ssTaxP2 = databases.searchTableA2(p2Income);
+  const stateTaxAllowance = databases.searchTableA1(parentState, totalIncome) * totalIncome;
+  const ssTaxAllowP1 = databases.searchTableA2(p1Income);
+  const ssTaxAllowP2 = databases.searchTableA2(p2Income);
   const incomeProtectionAllowance = databases.searchTableA3(numberInHousehold, numberInCollege);
   const pEmploymentExpenseAllowance = getParentEmploymentExpenseAllowance(inputs);
-  return stateTaxAllowance + ssTaxP1 + ssTaxP2 + incomeProtectionAllowance + pEmploymentExpenseAllowance;
+  return incomeTaxPaidP1P2 + stateTaxAllowance + ssTaxAllowP1 + ssTaxAllowP2 + incomeProtectionAllowance + pEmploymentExpenseAllowance;
 };
 
 const getParentEmploymentExpenseAllowance = (inputs) => { //TODO this might need a review! logic is complicated
@@ -153,7 +152,7 @@ const getStudentTotalIncome = (inputs) => {
 
 const getStudentAllowances = (inputs) => {
   const { studentIncomeTaxPaid, studentState, studentIncome, studentIncProtAllowance } = inputs;
-  const sStateTaxAllowance = databases.searchTableA7(studentState.name);
+  const sStateTaxAllowance = databases.searchTableA7(studentState);
   const sSocialSecurityTax = databases.searchTableA2(studentIncome);
   //TODO: verify with Oscar
   const parentsAllowances = getParentsContribution(inputs);
@@ -216,6 +215,12 @@ const addAssumptions = (inputs) => {
   console.log('Adding constants and assumptions to given inputs');
   const fullInputs = inputs;
   fullInputs['studentIncProtAllowance'] = 6600;
+  //fix numbers by converting from strings
+  fullInputs['p1Income'] = Number(fullInputs['p1Income']);
+  fullInputs['p2Income'] = Number(fullInputs['p2Income']);
+  fullInputs['studentIncome'] = Number(fullInputs['studentIncome']);
+  fullInputs['studentIncomeTaxPaid'] = Number(fullInputs['studentIncomeTaxPaid']);
+  fullInputs['incomeTaxPaidP1P2'] = Number(fullInputs['incomeTaxPaidP1P2']);
   return fullInputs;
 };
 
