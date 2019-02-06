@@ -7,7 +7,7 @@ const schoolinfo = [
     livingexpensesoncampus:  19982,
     Livingexpensesoffcampus:  18407,
     Livingexpenseswithrelatives:  11576,
-    type: '',
+    type: 'UC',
   },
   {
     id: 2,
@@ -52,11 +52,11 @@ const schoolinfo = [
   {
     id: 6,
     name: 'UC San Francisco',
-    tuitioninstate:  N/A,
-    tuitionoutofstate:  N/A,
-    livingexpensesoncampus:  N/A,
-    Livingexpensesoffcampus:  N/A,
-    Livingexpenseswithrelatives:  N/A,
+    tuitioninstate:  0,
+    tuitionoutofstate:  0,
+    livingexpensesoncampus:  0,
+    Livingexpensesoffcampus:  0,
+    Livingexpenseswithrelatives:  0,
     type: 'UC',
   },
   {
@@ -16642,4 +16642,44 @@ const salaryinfo = [
       },
     ],
   },
-],
+];
+
+const searchSchoolCost = (school, state) => {
+  for (var i = 0; i < schoolinfo.length; i++) {
+    let { id, tuitioninstate, tuitionoutofstate } = schoolinfo[i];
+    if(school == id) {
+      //TODO we need to check if the student state is equal to school state (but we don't have the shool state in the DB)
+      return tuitioninstate;
+    }
+  }
+  return 0;
+};
+
+const searchSchoolLivingExpenses = (school, livingPreferences) => {
+  for (var i = 0; i < schoolinfo.length; i++) {
+    let { id, livingexpensesoncampus, Livingexpensesoffcampus, Livingexpenseswithrelatives } = schoolinfo[i];
+    if(school == id) {
+      //TODO set the difference cases of living preferences. Needs update on front end reading the value
+      return livingexpensesoncampus;
+    }
+  }
+  return 0;
+};
+
+const searchSchoolType = (schoolID) => {
+  for (var i = 0; i < schoolinfo.length; i++) {
+    const { id, type } = schoolinfo[i];
+    if(schoolID == id) {
+      return type;
+    }
+  }
+  return 'UC';
+};
+
+const schoolsDB = {
+  searchSchoolCost,
+  searchSchoolLivingExpenses,
+  searchSchoolType,
+};
+
+export default schoolsDB;

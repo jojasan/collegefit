@@ -66,6 +66,8 @@ class Questions extends React.Component {
       numberInCollege: 1,
       numberInHousehold: 2,
       numberOfParents: 1, //TODO: needs to be read from the form! Maybe checkbox?
+      parentPassedAwayMilitary: false,
+      careerInTeaching: false,
       studentIncome: 0,
       p1Income: 0,
       p2Income: 0,
@@ -77,8 +79,13 @@ class Questions extends React.Component {
       incomeTaxPaidP1P2: 0,
       studentCashSavingsCheckings: 0,
       pCashSavingsCheckings: 0,
+      studentWorthInvestments: 0,
       pWorthInvestments: 0,
+      studentWorthBiz: 0,
       pWorthBiz: 0,
+      livingPreferences: 'onCampus',
+      school: 1, //ID for UCLA, the defaul school
+      isDependant: true,
       studentState: {
         name: '',
         value: '',

@@ -1,3 +1,5 @@
+import schoolsDB from './SchoolsDB';
+
 const tableA1 = [
   {
     state: 'alabama',
@@ -991,7 +993,16 @@ const stateaid = [
   },
 ];
 
-
+const pellGrantProgram = [
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //COA 0-199
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //COA 200-299
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //COA 300-399
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //COA 400-499
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //COA 500-599
+  [650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //COA 600-699
+  [750,700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //COA 700-799
+  //ADD HERE
+];
 
 const searchTableA1 = (state, totalIncome) => {
   for (var i = 0; i < tableA1.length; i++) {
@@ -1059,6 +1070,48 @@ const searchTableA7 = (state) => {
   return 0;
 };
 
+const searchPellGrantProgram = (coa, efc) => {
+  let x_coord = 0
+  let y_coord = 0;
+  if(coa != 200 && efc != 0) {
+    x_coord = Math.floor(coa/100) - 1
+    y_coord = efc%100 == 0 ? efc/100 : Math.floor(efc/100) + 1;
+  }
+  //TODO missing case when only efc = 0 (first column)
+  return pellGrantProgram[x_coord][y_coord];
+};
+
+const searchIncomeCeiling = (familySize, grantType) => {
+  for (var i = 0; i < incomeceiling.length; i++) {
+    const { familysize, calgrantA, calgrantB } = incomeceiling[i];
+    if(familySize == familysize) {
+      if(grantType == 'A') {
+        return calgrantA;
+      } else {
+        return calgrantB;
+      }
+    }
+  }
+  return 0;
+};
+
+const searchStateAid = (schoolID, grantType) => {
+  const schoolTypeSearched = schoolsDB.searchSchoolType(schoolID);
+  for (var i = 0; i < stateaid.length; i++) {
+    const { aidtype, schooltype, y1 } = stateaid[i];
+    if(grantType == 'A') {
+      if(aidtype == 'calgrantA' && schoolTypeSearched == schooltype) {
+        return y1;
+      }
+    } else if (grantType =='B') {
+      if(aidtype == 'calgrantB' && schoolTypeSearched == schooltype) {
+        return y1;
+      }
+    }
+  }
+  return 0;
+};
+
 const databases = {
   searchTableA1,
   searchTableA2,
@@ -1067,6 +1120,9 @@ const databases = {
   searchTableA5,
   searchTableA6,
   searchTableA7,
+  searchPellGrantProgram,
+  searchIncomeCeiling,
+  searchStateAid,
 };
 
 export default databases;

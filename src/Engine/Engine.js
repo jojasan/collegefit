@@ -1,41 +1,68 @@
 import databases from './DataBases';
+import schoolsDB from './SchoolsDB';
 
 const runEngine = (inputs) => {
   console.log('Engine starting with following params:');
   console.log(inputs);
   const fullInputs = addAssumptions(inputs);
   //TODO: need to loop through all the schools. Initially set 1 school as default
+
+  //starting with federal aid
   const federalAid = getFederalAid(fullInputs);
-  const stateAid = getStateAid(fullInputs);
+  const financialNeed = getTotalCostAttendance(inputs) - getEFC(inputs, false);
+  const finNeedAfterFedAid = financialNeed - federalAid;
+
+  //now doing state aid
+  const stateAid = getStateAid(fullInputs, finNeedAfterFedAid);
+
+  //now private aid
   const privateAid = getPrivatelAid(fullInputs);
+
+  //
   const totalAid = federalAid + stateAid + privateAid;
+
+  console.log('Fed aid is: ' + federalAid);
+  console.log('State aid is: ' + stateAid);
+  console.log('Private aid is: ' + privateAid);
   console.log('Total aid is: ' + totalAid);
 };
 
 //-------------------- FEDERAL AID SECTION ----------------------
 const getFederalAid = (inputs) => {
-  //TODO: assigned to XXX
   console.log('Calculating Federal Aid');
-  const efc = getEFC(inputs);
+  const efc = getEFC(inputs, true);
   console.log('EFC is: ' + efc);
-
-  return 0;
+  const totalCOA = getTotalCostAttendance(inputs);
+  console.log('Total COA is : ' + totalCOA);
+  const grants = getGrants(inputs, efc, totalCOA);
+  return grants;
 };
 
-const getEFC = (inputs) => {
-  //TODO: assigned to XXX
+const getEFC = (inputs, showLogs) => {
   console.log('Calculating EFC');
   const parentsContribution = getParentsContribution(inputs);
   const studentContributionAAI = getStudentContributionAAIncome(inputs);
   const studentContributionAssets = getStudentContributionAssets(inputs);
-  console.log('Parents Contribution is: ' + parentsContribution);
-  console.log('Student Contribution AAI is: ' + studentContributionAAI);
-  console.log('Student Contribution Assets is: ' + studentContributionAssets);
+  if(showLogs) {
+    console.log('Parents Contribution is: ' + parentsContribution);
+    console.log('Student Contribution AAI is: ' + studentContributionAAI);
+    console.log('Student Contribution Assets is: ' + studentContributionAssets);
+  }
   return parentsContribution + studentContributionAAI + studentContributionAssets;
 };
 
-const getGrants = (inputs) => {
+const getTotalCostAttendance = (inputs) => {
+  const { studentState, livingPreferences, school } = inputs;
+  const tuitionCost = schoolsDB.searchSchoolCost(school, studentState);
+  const livingExpenses = schoolsDB.searchSchoolLivingExpenses(school, livingPreferences);
+  return tuitionCost + livingExpenses;
+};
 
+const getGrants = (inputs, efc, totalCost) => {
+  const { parentPassedAwayMilitary, careerInTeaching } = inputs;
+  const pellGrant = databases.searchPellGrantProgram(totalCost, efc);
+  //TODO: what should be done with all the other grants that have ranges?
+  return pellGrant;
 };
 
 const getParentsContribution = (inputs) => {
@@ -127,22 +154,52 @@ const getStudentContributionAssets = (inputs) => {
 };
 
 //-------------------- STATE AID SECTION ----------------------
-const getStateAid = (inputs) => {
-  //TODO: assigned to XXX
+const getStateAid = (inputs, finNeedAfterFedAid) => {
   console.log('Calculating State Aid');
-  return 0;
+  const { studentIncome, p1Income, p2Income, studentCashSavingsCheckings, pCashSavingsCheckings,
+    studentWorthInvestments, pWorthInvestments, studentWorthBiz, pWorthBiz, school, isDependant, gpa, numberInHousehold } = inputs;
+  const totalAssets = studentCashSavingsCheckings + pCashSavingsCheckings +
+    studentWorthInvestments + pWorthInvestments +
+    studentWorthBiz + pWorthBiz;
+  const totalIncome = studentIncome + p1Income + p2Income;
+  const assetCeiling = isDependant ? 79300 : 37700;
+  const grantType = (gpa >= 3) ? 'A' : 'B';
+  const incomeCeiling = databases.searchIncomeCeiling(numberInHousehold, grantType);
+
+  console.log('Asset ceiling is: ' + assetCeiling);
+  console.log('Grant Type is: '+ grantType);
+  console.log('Income ceiling is: ' + incomeCeiling);
+
+  let grant = 0;
+  const stateAidSchool = databases.searchStateAid(school, grantType);
+  if(totalIncome > incomeCeiling || totalAssets > assetCeiling) {
+    grant = 0;
+  }
+  else if(grantType == 'A') {
+    if(finNeedAfterFedAid > stateAidSchool + 1500) {
+      return stateAidSchool;
+    }
+  } else if(grantType == 'B') {
+    if(finNeedAfterFedAid > 700) {
+      return stateAidSchool;
+    }
+  }
+  return appliesForStateAid ? grant : 0;
 };
 
-//-------------------- FEDERAL AID SECTION ----------------------
+const appliesForStateAid = (inputs, grantType) => {
+  //TODO: what's the logic! we didn't document this ask oscar
+  return true;
+};
+
+//-------------------- PRIVATE AID SECTION ----------------------
 const getPrivatelAid = (inputs) => {
-  //TODO: assigned to XXX
   console.log('Calculating Private Aid');
   return 0;
 };
 
 //-------------------- HELPERS ----------------------
 const addAssumptions = (inputs) => {
-  //TODO: assigned to John
   console.log('Adding constants and assumptions to given inputs');
   const fullInputs = inputs;
   fullInputs['studentIncProtAllowance'] = 6600;
