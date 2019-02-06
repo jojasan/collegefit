@@ -16676,10 +16676,24 @@ const searchSchoolType = (schoolID) => {
   return 'UC';
 };
 
+const getSchoolList = () => {
+  const schoolList = [];
+  for (var i = 0; i < schoolinfo.length; i++) {
+    let { id, name } = schoolinfo[i];
+    schoolList[i] = {
+      value: name,
+      label: name,
+      objectID: id,
+    };
+  }
+  return schoolList;
+};
+
 const schoolsDB = {
   searchSchoolCost,
   searchSchoolLivingExpenses,
   searchSchoolType,
+  getSchoolList,
 };
 
 export default schoolsDB;

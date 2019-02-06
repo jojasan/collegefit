@@ -15,7 +15,7 @@ const styles = theme => ({
   },
   selectControl: {
     marginTop: theme.spacing.unit * 2,
-    minWidth: 260,
+    //minWidth: 260,
   },
 });
 

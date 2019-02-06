@@ -109,18 +109,6 @@ class Profile extends React.Component {
               selectedItem={inputs.studentState}
             />
           </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={<Checkbox color="primary" name="isTeacher" value="yes" />}
-              label="Are you planning to become a Teacher?"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={<Checkbox color="primary" name="parentsPassedMilitary" value="yes" />}
-              label="Either of your parents passed away in Iraq/Afganistan while serving in the US Military?"
-            />
-          </Grid>
         </Grid>
         <br/>
         <Typography variant="h6" gutterBottom>
@@ -134,11 +122,12 @@ class Profile extends React.Component {
               name="dobParent1"
               label="Parent 1: Date of Birth"
               type="date"
-              defaultValue="1980-01-01"
               fullWidth
               InputLabelProps={{
                 shrink: true,
               }}
+              value={inputs.parent1DoB}
+              onChange={changeHandler('parent1DoB')}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -147,11 +136,12 @@ class Profile extends React.Component {
               name="dobParent2"
               label="Parent 2: Date of Birth"
               type="date"
-              defaultValue="1980-01-01"
               fullWidth
               InputLabelProps={{
                 shrink: true,
               }}
+              value={inputs.parent2DoB}
+              onChange={changeHandler('parent2DoB')}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -176,8 +166,9 @@ class Profile extends React.Component {
               label="# of people in your household"
               fullWidth
               type="number"
-              min="0"
-              max="10"
+              inputProps= {{ min: 2, max: 10, step: 1 }}
+              value={inputs.numberInHousehold}
+              onChange={changeHandler('numberInHousehold')}
             />
           </Grid>
           <Grid item xs={12} sm={6}>

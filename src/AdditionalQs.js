@@ -44,6 +44,18 @@ function AdditionalQs(props) {
             label="Are any of your parents a dislocated worker?"
           />
         </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="primary" name="isTeacher" value="yes" />}
+            label="Are you planning to become a Teacher?"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="primary" name="parentsPassedMilitary" value="yes" />}
+            label="Either of your parents passed away in Iraq/Afganistan while serving in the US Military?"
+          />
+        </Grid>
       </Grid>
     </React.Fragment>
   );

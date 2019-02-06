@@ -9,7 +9,9 @@ const runEngine = (inputs) => {
 
   //starting with federal aid
   const federalAid = getFederalAid(fullInputs);
-  const financialNeed = getTotalCostAttendance(inputs) - getEFC(inputs, false);
+  const totalCOA = getTotalCostAttendance(inputs);
+  const efc = getEFC(inputs, false);
+  const financialNeed = totalCOA - efc;
   const finNeedAfterFedAid = financialNeed - federalAid;
 
   //now doing state aid
@@ -25,6 +27,17 @@ const runEngine = (inputs) => {
   console.log('State aid is: ' + stateAid);
   console.log('Private aid is: ' + privateAid);
   console.log('Total aid is: ' + totalAid);
+
+  const result = {
+    federalAid,
+    stateAid,
+    privateAid,
+    totalCOA,
+    efc,
+    roi: 0,
+  };
+
+  return result;
 };
 
 //-------------------- FEDERAL AID SECTION ----------------------

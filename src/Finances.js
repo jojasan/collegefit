@@ -27,7 +27,7 @@ const styles = theme => ({
 class Finances extends React.Component {
 
   render() {
-    const { classes } = this.props;
+    const { classes, inputs, changeHandler } = this.props;
     return (
       <React.Fragment>
         <Typography variant="h6" gutterBottom>
@@ -40,7 +40,8 @@ class Finances extends React.Component {
               <Input
                 id="incomeAmountStudent"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.studentIncome}
+                onChange={changeHandler('studentIncome')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
               <FormHelperText id="helper-text">Estimate you best Guess</FormHelperText>
@@ -52,7 +53,8 @@ class Finances extends React.Component {
               <Input
                 id="taxesPaidStudent"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.studentIncomeTaxPaid}
+                onChange={changeHandler('studentIncomeTaxPaid')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -63,7 +65,8 @@ class Finances extends React.Component {
               <Input
                 id="savingsAccount"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.studentCashSavingsCheckings}
+                onChange={changeHandler('studentCashSavingsCheckings')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -74,7 +77,8 @@ class Finances extends React.Component {
               <Input
                 id="studentInvestments"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.studentWorthInvestments}
+                onChange={changeHandler('studentWorthInvestments')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -85,7 +89,8 @@ class Finances extends React.Component {
               <Input
                 id="studentBusinessFarmWorth"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.studentWorthBiz}
+                onChange={changeHandler('studentWorthBiz')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -102,7 +107,8 @@ class Finances extends React.Component {
               <Input
                 id="parent1Income"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.p1Income}
+                onChange={changeHandler('p1Income')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -113,7 +119,8 @@ class Finances extends React.Component {
               <Input
                 id="parent2Income"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.p2Income}
+                onChange={changeHandler('p2Income')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -124,7 +131,8 @@ class Finances extends React.Component {
               <Input
                 id="p1p2taxesPaid"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.incomeTaxPaidP1P2}
+                onChange={changeHandler('incomeTaxPaidP1P2')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -136,7 +144,8 @@ class Finances extends React.Component {
             <Input
               id="parentsAccount"
               type="number"
-              //value={this.state.amount}
+              value={inputs.pCashSavingsCheckings}
+              onChange={changeHandler('pCashSavingsCheckings')}
               startAdornment={<InputAdornment position="start">$</InputAdornment>}
             />
           </FormControl>
@@ -147,7 +156,8 @@ class Finances extends React.Component {
               <Input
                 id="parentInvestments"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.pWorthInvestments}
+                onChange={changeHandler('pWorthInvestments')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
@@ -158,7 +168,8 @@ class Finances extends React.Component {
               <Input
                 id="parentBusinessFarmWorth"
                 type="number"
-                //value={this.state.amount}
+                value={inputs.pWorthBiz}
+                onChange={changeHandler('pWorthBiz')}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
               <FormHelperText id="helper-text">Optional</FormHelperText>
