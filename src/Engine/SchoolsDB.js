@@ -16644,10 +16644,10 @@ const salaryinfo = [
   },
 ];
 
-const searchSchoolCost = (school, state) => {
+const searchSchoolCost = (schoolName, state) => {
   for (var i = 0; i < schoolinfo.length; i++) {
-    let { id, tuitioninstate, tuitionoutofstate } = schoolinfo[i];
-    if(school == id) {
+    let { name, tuitioninstate, tuitionoutofstate } = schoolinfo[i];
+    if( name == schoolName) {
       //TODO we need to check if the student state is equal to school state (but we don't have the shool state in the DB)
       return tuitioninstate;
     }

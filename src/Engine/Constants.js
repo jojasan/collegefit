@@ -40,12 +40,12 @@ const maritalStatus = [
   {
     value: 'Separated',
     label: 'Separated',
-    objectID: 3
+    objectID: 4
   },
   {
     value: 'Widowed',
     label: 'Widowed',
-    objectID: 3
+    objectID: 5
   },
 ];
 

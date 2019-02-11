@@ -4,21 +4,37 @@ import schoolsDB from './SchoolsDB';
 const runEngine = (inputs) => {
   console.log('Engine starting with following params:');
   console.log(inputs);
-  const fullInputs = addAssumptions(inputs);
+  addAssumptionsFixes(inputs);
   //TODO: need to loop through all the schools. Initially set 1 school as default
+  const results1 = runEngineForSchoolMajor(inputs, inputs.schoolCompare1, 'Major1');
+  const results2 = runEngineForSchoolMajor(inputs, inputs.schoolCompare2, 'Major1');
+  const results3 = runEngineForSchoolMajor(inputs, inputs.schoolCompare3, 'Major1');
 
+  const results = [
+    results1,
+    results2,
+    results3,
+  ];
+
+  return results;
+};
+
+const runEngineForSchoolMajor = (inputs, school, major) => {
+  console.log('Running Engine for School -' + school + '- and Major -' + major + '-')
+  inputs['currentSchool'] = school;
+  inputs['currentMajor'] = major;
   //starting with federal aid
-  const federalAid = getFederalAid(fullInputs);
+  const federalAid = getFederalAid(inputs);
   const totalCOA = getTotalCostAttendance(inputs);
   const efc = getEFC(inputs, false);
   const financialNeed = totalCOA - efc;
   const finNeedAfterFedAid = financialNeed - federalAid;
 
   //now doing state aid
-  const stateAid = getStateAid(fullInputs, finNeedAfterFedAid);
+  const stateAid = getStateAid(inputs, finNeedAfterFedAid);
 
   //now private aid
-  const privateAid = getPrivatelAid(fullInputs);
+  const privateAid = getPrivatelAid(inputs);
 
   //
   const totalAid = federalAid + stateAid + privateAid;
@@ -64,9 +80,9 @@ const getEFC = (inputs, showLogs) => {
 };
 
 const getTotalCostAttendance = (inputs) => {
-  const { studentState, livingPreferences, school } = inputs;
-  const tuitionCost = schoolsDB.searchSchoolCost(school, studentState);
-  const livingExpenses = schoolsDB.searchSchoolLivingExpenses(school, livingPreferences);
+  const { studentState, livingPreferences, currentSchool } = inputs;
+  const tuitionCost = schoolsDB.searchSchoolCost(currentSchool, studentState);
+  const livingExpenses = schoolsDB.searchSchoolLivingExpenses(currentSchool, livingPreferences);
   return tuitionCost + livingExpenses;
 };
 
@@ -169,7 +185,7 @@ const getStudentContributionAssets = (inputs) => {
 const getStateAid = (inputs, finNeedAfterFedAid) => {
   console.log('Calculating State Aid');
   const { studentIncome, p1Income, p2Income, studentCashSavingsCheckings, pCashSavingsCheckings,
-    studentWorthInvestments, pWorthInvestments, studentWorthBiz, pWorthBiz, school, isDependant, gpa, numberInHousehold } = inputs;
+    studentWorthInvestments, pWorthInvestments, studentWorthBiz, pWorthBiz, currentSchool, isDependant, gpa, numberInHousehold } = inputs;
   const totalAssets = studentCashSavingsCheckings + pCashSavingsCheckings +
     studentWorthInvestments + pWorthInvestments +
     studentWorthBiz + pWorthBiz;
@@ -183,7 +199,7 @@ const getStateAid = (inputs, finNeedAfterFedAid) => {
   console.log('Income ceiling is: ' + incomeCeiling);
 
   let grant = 0;
-  const stateAidSchool = databases.searchStateAid(school, grantType);
+  const stateAidSchool = databases.searchStateAid(currentSchool, grantType);
   if(totalIncome > incomeCeiling || totalAssets > assetCeiling) {
     grant = 0;
   }
@@ -211,17 +227,16 @@ const getPrivatelAid = (inputs) => {
 };
 
 //-------------------- HELPERS ----------------------
-const addAssumptions = (inputs) => {
+const addAssumptionsFixes = (inputs) => {
   console.log('Adding constants and assumptions to given inputs');
-  const fullInputs = inputs;
-  fullInputs['studentIncProtAllowance'] = 6600;
+  inputs['studentIncProtAllowance'] = 6600;
   //fix numbers by converting from strings
-  fullInputs['p1Income'] = Number(fullInputs['p1Income']);
-  fullInputs['p2Income'] = Number(fullInputs['p2Income']);
-  fullInputs['studentIncome'] = Number(fullInputs['studentIncome']);
-  fullInputs['studentIncomeTaxPaid'] = Number(fullInputs['studentIncomeTaxPaid']);
-  fullInputs['incomeTaxPaidP1P2'] = Number(fullInputs['incomeTaxPaidP1P2']);
-  return fullInputs;
+  inputs['p1Income'] = Number(inputs['p1Income']);
+  inputs['p2Income'] = Number(inputs['p2Income']);
+  inputs['studentIncome'] = Number(inputs['studentIncome']);
+  inputs['studentIncomeTaxPaid'] = Number(inputs['studentIncomeTaxPaid']);
+  inputs['incomeTaxPaidP1P2'] = Number(inputs['incomeTaxPaidP1P2']);
+  return;
 };
 
 const getEldestParentAge = (date1, date2) => {

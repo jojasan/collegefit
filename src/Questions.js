@@ -22,6 +22,7 @@ import runEngine from './Engine/Engine';
 import schoolsDB from './Engine/SchoolsDB';
 import SimpleSelect from './SimpleSelect.js'
 import Grid from '@material-ui/core/Grid';
+import Results from './Results';
 
 const styles = theme => ({
   appBar: {
@@ -58,9 +59,6 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     marginLeft: theme.spacing.unit,
   },
-  table: {
-    //minWidth: 1000,
-  },
 });
 
 const steps = ['Profile', 'Finances', 'Additional Questions'];
@@ -71,49 +69,55 @@ class Questions extends React.Component {
   state = {
     activeStep: 0,
     inputs: {
-      studentName: '',
+      //STUDENT INFO
+      studentName: 'John',
       studentDoB: '2000-01-01',
+      studentIncome: 2000,
+      studentUntaxedIncome: 0,
+      gpa: 3.3,
+      studentTotalAdditionalInfo: 0,
+      studentIncomeTaxPaid: 200,
+      studentCashSavingsCheckings: 0,
+      studentWorthInvestments: 0,
+      studentWorthBiz: 0,
+      studentState: 'California',
+      livingPreferences: 'onCampus',
+      careerInTeaching: false,
+      //FAMILY INFO
       parent1DoB: '1980-01-01',
       parent2DoB: '1980-01-01',
-      gpa: 3.3,
       numberInCollege: 1,
       numberInHousehold: 3,
       numberOfParents: 1, //TODO: needs to be read from the form! Maybe checkbox?
       parentPassedAwayMilitary: false,
-      careerInTeaching: false,
-      studentIncome: 0,
-      p1Income: 0,
-      p2Income: 0,
-      studentUntaxedIncome: 0,
+      p1Income: 35000,
+      p2Income: 15000,
       pUntaxedIncome: 0,
-      studentTotalAdditionalInfo: 0,
       pTotalAdditionalInfo: 0,
-      studentIncomeTaxPaid: 0,
-      incomeTaxPaidP1P2: 0,
-      studentCashSavingsCheckings: 0,
+      incomeTaxPaidP1P2: 5000,
       pCashSavingsCheckings: 0,
-      studentWorthInvestments: 0,
       pWorthInvestments: 0,
-      studentWorthBiz: 0,
       pWorthBiz: 0,
-      livingPreferences: 'onCampus',
-      school: 1, //ID for UCLA, the defaul school
       isDependant: true,
-      studentState: 'California',
       parentState: 'California',
       maritalStatus: 'Married',
-      results : {
-        federalAid: 0,
-        stateAid: 0,
-        privateAid: 0,
-        totalCOA: 0,
-        efc: 0,
-      },
+      //OPTIONS
       schoolCompare1: 'UCLA',
       schoolCompare2: 'UC Berkeley',
       schoolCompare3: 'Northwestern University',
-    }
+    },
+    results : [],
   };
+
+/*
+{
+  federalAid: 0,
+  stateAid: 0,
+  privateAid: 0,
+  totalCOA: 0,
+  efc: 0,
+},
+*/
 
   handleNext = () => {
     let nextStep = this.state.activeStep + 1;
@@ -142,7 +146,11 @@ class Questions extends React.Component {
   };
 
   handleChange = name => event => {
+    console.log('Changing values. Active Step is: ' + this.state.activeStep);
     this.state.inputs[name] = event.target.value;
+    if(this.state.activeStep === steps.length) { //TODO: this is in a different context, it is the dropdown's context and not Question
+      this.state.results = runEngine(this.state.inputs);
+    }
     this.setState({});
   };
 
@@ -197,124 +205,12 @@ class Questions extends React.Component {
             </Stepper>
             <React.Fragment>
               {activeStep === steps.length ? (
-                <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Results
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    Compare Schools
-                  </Typography><br/>
-                  <Paper className={classes.root}>
-                    <Table className={classes.table}>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>Concept</TableCell>
-                          <TableCell><SimpleSelect
-                            options={schoolOptions}
-                            labelText="School 1"
-                            selectedItem={this.state.inputs.schoolCompare1}
-                            changeHandler={this.handleChange('schoolCompare1')}
-                          /></TableCell>
-                          <TableCell><SimpleSelect
-                            options={schoolOptions}
-                            labelText="School 2"
-                            selectedItem={this.state.inputs.schoolCompare2}
-                            changeHandler={this.handleChange('schoolCompare2')}
-                          /></TableCell>
-                          <TableCell><SimpleSelect
-                            options={schoolOptions}
-                            labelText="School 3"
-                            selectedItem={this.state.inputs.schoolCompare3}
-                            changeHandler={this.handleChange('schoolCompare3')}
-                          /></TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        <TableRow key={1}>
-                          <TableCell component="th" scope="row">Cost of Attendance</TableCell>
-                          <TableCell align="right">{this.state.results.totalCOA}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                        </TableRow>
-                        <TableRow key={2}>
-                          <TableCell component="th" scope="row">Federal Aid</TableCell>
-                          <TableCell align="right">{this.state.results.federalAid}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                        </TableRow>
-                        <TableRow key={3}>
-                          <TableCell component="th" scope="row">State Aid</TableCell>
-                          <TableCell align="right">{this.state.results.stateAid}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                        </TableRow>
-                        <TableRow key={4}>
-                          <TableCell component="th" scope="row">Private Aid</TableCell>
-                          <TableCell align="right">{this.state.results.privateAid}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                        </TableRow>
-                        <TableRow key={5}>
-                          <TableCell component="th" scope="row">EFC</TableCell>
-                          <TableCell align="right">{this.state.results.efc}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                        </TableRow>
-                        <TableRow key={6}>
-                          <TableCell component="th" scope="row">ROI</TableCell>
-                          <TableCell align="right">{this.state.results.roi}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                          <TableCell align="right">{'XXXX'}</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </Paper>
-                  <br/><br/>
-                  <Typography variant="subtitle1">
-                    List of Schools
-                  </Typography><br/>
-                    <Paper className={classes.root}>
-                      <Table className={classes.table}>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>School</TableCell>
-                            <TableCell>Cost Of Attendance</TableCell>
-                            <TableCell>Total Aid</TableCell>
-                            <TableCell>EFC</TableCell>
-                            <TableCell>ROI</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          <TableRow key={1}>
-                            <TableCell component="th" scope="row">UCLA</TableCell>
-                            <TableCell align="right">{this.state.results.totalCOA}</TableCell>
-                            <TableCell align="right">{this.state.results.federalAid + this.state.results.stateAid + this.state.results.privateAid}</TableCell>
-                            <TableCell align="right">{this.state.results.efc}</TableCell>
-                            <TableCell align="right">{this.state.results.roi}</TableCell>
-                          </TableRow>
-                          <TableRow key={2}>
-                            <TableCell component="th" scope="row">Berkeley</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                          </TableRow>
-                          <TableRow key={3}>
-                            <TableCell component="th" scope="row">Northwestern</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                            <TableCell align="right">{'XXXX'}</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </Paper>
-                    <Button onClick={this.emailReport} variant="contained"
-                      color="primary" className={classes.button}>
-                      Email Report
-                    </Button>
-
-                </React.Fragment>
+                <Results
+                  inputs={this.state.inputs}
+                  changeHandler={this.handleChange}
+                  results={this.state.results}
+                  emailFn={this.emailReport}
+                />
               ) : (
                 <React.Fragment>
                   {this.getStepContent(activeStep)}
