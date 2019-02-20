@@ -910,7 +910,7 @@ const incomeceiling = [
   },
 ];
 
-const stateaid = [
+const stateaid = [ //TODO Check with Oscar, this is wrong
   {
     aidtype: 'calgrantA',
     schooltype: 'CSU',
@@ -922,7 +922,7 @@ const stateaid = [
   {
     aidtype: 'calgrantA',
     schooltype: 'UC',
-    y1: 94400,
+    y1: 14130, //I updated this to what I think it should be
     y2: 94400,
     y3: 94400,
     y4: 94400,
@@ -1154,18 +1154,19 @@ const searchIncomeCeiling = (familySize, grantType) => {
 const searchStateAid = (schoolID, grantType) => {
   const schoolTypeSearched = schoolsDB.searchSchoolType(schoolID);
   for (var i = 0; i < stateaid.length; i++) {
-    const { aidtype, schooltype, y1 } = stateaid[i];
+    const { aidtype, schooltype, y1, y2, y3, y4 } = stateaid[i];
+    let yearlyAids = [y1, y2, y3, y4];
     if(grantType == 'A') {
       if(aidtype == 'calgrantA' && schoolTypeSearched == schooltype) {
-        return y1;
+        return yearlyAids;
       }
     } else if (grantType =='B') {
       if(aidtype == 'calgrantB' && schoolTypeSearched == schooltype) {
-        return y1;
+        return yearlyAids;
       }
     }
   }
-  return 0;
+  return [0,0,0,0];
 };
 
 const databases = {

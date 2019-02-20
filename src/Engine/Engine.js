@@ -31,7 +31,8 @@ const runEngineForSchoolMajor = (inputs, school, major) => {
   const finNeedAfterFedAid = financialNeed - federalAid;
 
   //now doing state aid
-  const stateAid = getStateAid(inputs, finNeedAfterFedAid);
+  const stateAids = getStateAid(inputs, finNeedAfterFedAid);
+  const stateAid = stateAids[0];
 
   //now private aid
   const privateAid = getPrivatelAid(inputs);
@@ -40,7 +41,7 @@ const runEngineForSchoolMajor = (inputs, school, major) => {
   const totalAid = federalAid + stateAid + privateAid;
 
   console.log('Fed aid is: ' + federalAid);
-  console.log('State aid is: ' + stateAid);
+  console.log('State aid is: ' + stateAids);
   console.log('Private aid is: ' + privateAid);
   console.log('Total aid is: ' + totalAid);
 
@@ -184,6 +185,7 @@ const getStudentContributionAssets = (inputs) => {
 //-------------------- STATE AID SECTION ----------------------
 const getStateAid = (inputs, finNeedAfterFedAid) => {
   console.log('Calculating State Aid');
+  console.log('Financial need after Federal Aid is: ' + finNeedAfterFedAid);
   const { studentIncome, p1Income, p2Income, studentCashSavingsCheckings, pCashSavingsCheckings,
     studentWorthInvestments, pWorthInvestments, studentWorthBiz, pWorthBiz, currentSchool, isDependant, gpa, numberInHousehold } = inputs;
   const totalAssets = studentCashSavingsCheckings + pCashSavingsCheckings +
@@ -198,26 +200,36 @@ const getStateAid = (inputs, finNeedAfterFedAid) => {
   console.log('Grant Type is: '+ grantType);
   console.log('Income ceiling is: ' + incomeCeiling);
 
-  let grant = 0;
+  let grant = [0,0,0,0]; //4 years of grants
   const stateAidSchool = databases.searchStateAid(currentSchool, grantType);
   if(totalIncome > incomeCeiling || totalAssets > assetCeiling) {
-    grant = 0;
+    return grant; //all grants are 0 in this case
   }
-  else if(grantType == 'A') {
-    if(finNeedAfterFedAid > stateAidSchool + 1500) {
-      return stateAidSchool;
+  else if(grantType == 'A') { //TODO: Oscar, explain to me each year what happens! each year you see if its above the limit? does it carry on?
+    if(finNeedAfterFedAid > stateAidSchool[0] + 1500) {
+      grant = stateAidSchool;
     }
   } else if(grantType == 'B') {
     if(finNeedAfterFedAid > 700) {
-      return stateAidSchool;
+      grant = stateAidSchool;
     }
   }
-  return appliesForStateAid ? grant : 0;
+  return appliesForStateAid ? grant : [0,0,0,0];
 };
 
 const appliesForStateAid = (inputs, grantType) => {
   //TODO: what's the logic! we didn't document this ask oscar
-  return true;
+  const { studentState, currentSchool } = inputs;
+  if(studentState == 'California') { //currently our logic only works for California
+    //TODO: check if citizenship is US
+    //TODO: check if fed and state financial standing is ok
+    //TODO: check if school is elegible for aid
+    //TODO: check if select service = YES
+    //TODO: check if >= halftime enrollment
+    return true;
+  }
+
+  return false;
 };
 
 //-------------------- PRIVATE AID SECTION ----------------------

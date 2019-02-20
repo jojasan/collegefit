@@ -17,8 +17,12 @@ const styles = theme => ({
   root: {
   },
   table: {
+    'table-layout': 'fixed',
   },
   button: {
+  },
+  cell: {
+    width: '100px',
   },
 });
 
@@ -117,9 +121,9 @@ class Results extends React.Component {
               {tableResults.map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">{row.rowConcept}</TableCell>
-                  <TableCell align="right">{row.school1}</TableCell>
-                  <TableCell align="right">{row.school2}</TableCell>
-                  <TableCell align="right">{row.school3}</TableCell>
+                  <TableCell align="right" className={classes.cell}>{row.school1}</TableCell>
+                  <TableCell align="right" className={classes.cell}>{row.school2}</TableCell>
+                  <TableCell align="right" className={classes.cell}>{row.school3}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -16657,8 +16657,8 @@ const searchSchoolCost = (schoolName, state) => {
 
 const searchSchoolLivingExpenses = (school, livingPreferences) => {
   for (var i = 0; i < schoolinfo.length; i++) {
-    let { id, livingexpensesoncampus, Livingexpensesoffcampus, Livingexpenseswithrelatives } = schoolinfo[i];
-    if(school == id) {
+    let { id, name, livingexpensesoncampus, Livingexpensesoffcampus, Livingexpenseswithrelatives } = schoolinfo[i];
+    if(school == name) {
       //TODO set the difference cases of living preferences. Needs update on front end reading the value
       return livingexpensesoncampus;
     }
@@ -16668,8 +16668,8 @@ const searchSchoolLivingExpenses = (school, livingPreferences) => {
 
 const searchSchoolType = (schoolID) => {
   for (var i = 0; i < schoolinfo.length; i++) {
-    const { id, type } = schoolinfo[i];
-    if(schoolID == id) {
+    const { id, name, type } = schoolinfo[i];
+    if(schoolID == name) {
       return type;
     }
   }
